@@ -1,10 +1,11 @@
 // implement your API here
 const express = require('express')
 const server = express()
+const cors = require('cors')
 const port = 5000
 const user_db = require('./data/db')
 server.use(express.json())
-
+server.use(cors())
 server.get('/', (req, res) => {
     res.send('Welcome to the node-api1-project!')
 })
@@ -41,7 +42,7 @@ server.post('/api/users/', (req, res) => {
     const user = req.body
     user_db.insert(user)
         .then(_user => {
-            if (!_user.name || !use.bio) {
+            if (!_user.name === null || !use.bio === null) {
                 res.status(400).json({
                     errorMessage: "Please provide name and bio for the user."
                 })
