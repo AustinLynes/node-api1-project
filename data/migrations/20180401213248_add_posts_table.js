@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
     users.increments();
 
     users.string('name', 255).notNullable();
-    users.text('bio');
+    users.text('bio').notNullable();
 
     users.timestamps(true, true);
   });
